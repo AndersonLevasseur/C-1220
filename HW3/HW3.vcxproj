@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="crtdbg.h" />
     <ClInclude Include="LLSortedPosInt.h" />
   </ItemGroup>
   <ItemGroup>

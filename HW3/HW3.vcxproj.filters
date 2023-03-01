@@ -18,6 +18,9 @@
     <ClInclude Include="LLSortedPosInt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="crtdbg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LLSortedPosInt.cpp">
