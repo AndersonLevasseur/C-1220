@@ -71,13 +71,15 @@ LLSortedPosInt::LLSortedPosInt(int* keys, int n) : LLSortedPosInt() {
 
 LLSortedPosInt::LLSortedPosInt(const LLSortedPosInt& l) : LLSortedPosInt() {
 	// create a deep copy of the input list l
+
 	Node* next = l.head->next;
-	Node* copyNext = head->next;
+	Node* copy = head;
 
 	while (next != nullptr)
 	{
-		copyNext = createNode(next->key, nullptr);
+		copy->next = createNode(next->key, nullptr);
 		next = next->next;
+		copy = copy->next;
 	}
 
 }
@@ -85,6 +87,7 @@ LLSortedPosInt::LLSortedPosInt(const LLSortedPosInt& l) : LLSortedPosInt() {
 // Destructor
 LLSortedPosInt::~LLSortedPosInt() {
 	// free the Nodes in *this, including the sentinal
+	destroy(head);
 }
 
 // Assignment Operator
@@ -95,30 +98,22 @@ LLSortedPosInt& LLSortedPosInt::operator=
 		return *this;
 	}
 
-	// free old elements of the list before the new elements from l are assigned4
-	Node* next = this->head->next;
+	// free old elements of the list before the new elements from l are assigned
 	Node* compNext = l.head->next;
-	if (this->head == nullptr)
-	{
-		this->head = createNode(HEAD_OF_LIST, nullptr);
-	}
+
+	destroy(this->head);
+	head = createNode(HEAD_OF_LIST, nullptr);
+
+
 	while (compNext != nullptr)
 	{
-		if (next == nullptr)
-		{
-			this->insert(compNext->key);
-		}
-		else
-		{
-			next->key = compNext->key;
-			next = next->next;
-		}
+		insert(compNext->key);
 		compNext = compNext->next;
 	}
+
 	// if necessary, rebuild the sentinal
 
 	// build the list as a deep copy of l
-
 	// return *this
 	return *this;
 }
@@ -161,12 +156,14 @@ bool LLSortedPosInt::isEmpty() const {
 
 bool LLSortedPosInt::containsElement(int key) const {
 	// return true if key is in the list; return false otherwise
-	if (head->next != nullptr)
+	Node* next = head->next;
+	while (next != nullptr)
 	{
-		if (head->next->key == key)
+		if (next->key == key)
 		{
 			return true;
 		}
+		next = next->next;
 	}
 	return false;
 }
@@ -174,6 +171,15 @@ bool LLSortedPosInt::containsElement(int key) const {
 // Other Operator Member Functions
 bool LLSortedPosInt::operator==(const LLSortedPosInt& l) const {
 	// compare the Nodes in *this with the Nodes in l
+	Node* next = head->next;
+	Node* copyNext = l.head->next;
+	while ((next != nullptr && copyNext != nullptr) || (next == copyNext)/*happens if they both point to Null or are a shallow copy of one another*/)
+	{
+		if (next == nullptr) { return true; }
+		if (next->key != copyNext->key) { return false; }
+		next = next->next;
+		copyNext = copyNext->next;
+	}
 	// if all Node key values in *this match the cooresponding
 	//  Node key values in l, then the lists are equivalent
 	return false;
@@ -181,6 +187,7 @@ bool LLSortedPosInt::operator==(const LLSortedPosInt& l) const {
 
 bool LLSortedPosInt::operator!=(const LLSortedPosInt& l) const {
 	// do the opposite of operator==
+	if (l == *this) { return false; }
 	return true;
 }
 
@@ -188,8 +195,14 @@ bool LLSortedPosInt::operator!=(const LLSortedPosInt& l) const {
 LLSortedPosInt  operator+ (const LLSortedPosInt& l1,
 	const LLSortedPosInt& l2) {
 	// create a copy of l1 and add each element of l2 to it in 
+	LLSortedPosInt sum = l1;
 	// the correct (sorted ascending) order, allow duplicates
-	LLSortedPosInt sum;
+	Node* next = l2.head->next;
+	while (next != nullptr)
+	{
+		sum.insert(next->key);
+		next = next->next;
+	}
 	return sum;
 }
 
@@ -197,7 +210,14 @@ LLSortedPosInt  operator- (const LLSortedPosInt& l1,
 	const LLSortedPosInt& l2) {
 	// copy l1 and remove all of l2 from l1, taking care to 
 	// reclaim any storage -- do not to remove the sentinal Node
-	LLSortedPosInt diff;
+	LLSortedPosInt diff = l1;
+	Node* next = l2.head->next;
+
+	while (next != nullptr) {
+		diff.remove(next->key);
+		next = next->next;
+	}
+
 	return diff;
 }
 

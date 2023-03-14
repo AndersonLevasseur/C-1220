@@ -1,0 +1,83 @@
+tests to run - 49+
+ - Constructors (4)
+	- constructor()
+		1 case
+		 - linkedList()
+	- constructor(key)
+		3 cases
+		 - linkedList(negative#)
+		 - linkedList(0)
+		 - linkedList(positive#)
+	- constructor(int* keys, int n)
+		14 cases
+		 - Assuming keys is the right length
+ 		  - linkesList(int* keys, 0)
+ 		  - linkesList(int* keys, 1)
+		  - linkesList(int* keys, <0)
+		  - linkesList(int* keys, >1)
+		 - keys is empty
+		  - linkesList(int* keys, 0)
+ 		  - linkesList(int* keys, 1)
+		  - linkesList(int* keys, <0)
+		  - linkesList(int* keys, >1)
+		 - keys is too short
+		  - linkesList(int* keys, <1)
+		  - linkesList(int* keys, >1)
+		 - key is too long
+		  - linkesList(int* keys, 0)
+ 		  - linkesList(int* keys, 1)
+		  - linkesList(int* keys, <0)
+		  - linkesList(int* keys, >1) 		  
+	- constructor(linkedlists)
+		3 cases 
+		 - Assuming linkedlist is length
+		   - 0
+		   - 1
+		   - >1
+ - Destructor
+	- already kinda done look at outPut, shouldn't see any leaks
+ - Assignment operator
+	4 cases
+	 - self assignment
+	 - assignment when initial list is 
+		 - empty
+		 - has less elements
+		 - has more elements		
+ - Print operator
+ - Boolean Functions (4) - can use if statements
+	- isEmpty
+		4 cases 
+		 - empty linkedlist
+		 - linkedList length 1
+		 - linkedList length >1
+		 - linkedList doesn't exist 
+	- contains Element
+	    6 cases 
+	 	 - contains element
+		  - length 1
+		  - length >1 
+		 - doesn't contain element
+		  - length 0
+		  - length 1
+		  - length >1
+		  - list doesn't exist
+	- '=='
+		7 cases
+		 - lists are equivalent
+		  - lists are empty
+		  - lists have one element
+		  - lists have >1 elements  
+		 - lists aren't equivalent
+		  - both lists exist
+		   - one list longer than the other
+		   - other list longer
+		   - lists same length, just different	
+		   - one list is empty
+	- '!='
+		7 cases
+		 - run same cases as '==' just expect opposite
+ - Other Functions
+	- '+'
+		# cases
+		 - 
+	- '-'

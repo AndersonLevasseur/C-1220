@@ -175,7 +175,10 @@ int main(int argc, char** argv) {
                     << lnum << "]\n";
             }
             break;
+            //runr my own tests
+        case 'w':
 
+            break;
             // quit the program
         case 'q': break;
 
@@ -206,7 +209,8 @@ void showMenu() {
     cout << "  y #        - ask if list # is empty     ";
     cout << "c #1 #2    - ask is elem 1 in list 2\n";
     cout << "  a #1 #2    - assign list 1 to list 2    ";
-    cout << "q          - quit the test program\n\n";
+    cout << "q          - quit the test program\n";
+    cout << "  w        - run own tests          \n\n";
     cout << "Command:  ";
 }
 
