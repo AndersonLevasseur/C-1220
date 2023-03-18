@@ -5,6 +5,22 @@
 #include "Instrument.h"
 
 class StringInstrument : public Instrument {
+private:
+	int numStrings, numFrets;
+	bool isBowed;
+public:
+	int GetNumOfStrings();
+
+	int GetNumOfFrets();
+
+	bool GetIsBowed();
+
+	void SetNumOfStrings(int numOfStrings);
+
+	void SetNumOfFrets(int numOfFrets);
+
+	void SetIsBowed(bool bowed);
+
 	// TODO: Declare private data members: numStrings, numFrets, isBowed
 
 

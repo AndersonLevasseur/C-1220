@@ -9,11 +9,11 @@
 using namespace std;
 
 class Instrument {
-protected:
+private:
 	string instrumentName;
 	string instrumentManufacturer;
 	int yearBuilt;
-	int cost;
+	double cost;
 
 public:
 	void SetName(string userName);
