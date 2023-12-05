@@ -38,11 +38,6 @@ ComplexNumber ComplexNumber::operator*(ComplexNumber rhs)
 	rhs.r = tempR;
 	return rhs;
 }
-//ComplexNumber& ComplexNumber::operator*(int rhs)
-//{
-//	r = r * rhs;
-//	return *this;
-//}
 
 istream& operator>>(istream& istrm, ComplexNumber& rhs)
 {
